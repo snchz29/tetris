@@ -4,7 +4,7 @@
 }
 
 body{
-    background-color: darkslateblue;
+    background-color: burlywood;
 }
 
 .main {
@@ -34,40 +34,14 @@ body{
     box-sizing: border-box;
     width: 25px;
     height: 25px;
-    border: 1px solid grey;
+    border: 1px dotted black;
     padding: 0;
-    background-color: snow;
+    background-color: #cccccc;
 }
 
 .figure, .set{
+    border: 5px double grey;
     background-color:black;
-}
-
-.red{
-    background-color: red;
-}
-
-.orange{
-    background-color: orangered;
-}
-
-.yellow{
-    background-color: yellow;
-}
-.green{
-    background-color: green;
-}
-
-.lightblue{
-    background-color: deepskyblue;
-}
-
-.blue{
-    background-color: blue;
-}
-
-.indigo{
-    background-color: indigo;
 }
 
 .name{
@@ -91,7 +65,7 @@ body{
 
 .welcome{
     background: black;
-    color: cornflowerblue;
+    color: burlywood;
     border-radius: 1em;
     padding: 1em;
     position: absolute;
