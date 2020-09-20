@@ -1,23 +1,26 @@
-let tetris = document.createElement('div')
-tetris.classList.add('tetris')
-document.getElementsByTagName("input")[0].value = getName()
+document.getElementsByClassName("name")[0].value = getName()+": 0"
 const width = 10
 const height = 24
-var moveInterval = 15000000
+let moveInterval = 1000
+
+let score = 0
 
 createField()
-let x = Math.floor(width / 2), y = height - 14
+createNextArea()
+let x = Math.floor(width / 2), y = height - 4
 let curFigure = 0
 let figureBody = 0
 let rotate = 0
 
+function getRandom() {
+    return Math.round(Math.random() * (6))
+}
+let nextFigure = Factory(getRandom())
+
 function create() {
-    function getRandom() {
-        return Math.round(Math.random() * (6))
-    }
+    console.log(moveInterval)
+    curFigure = nextFigure
     rotate = 0
-    curFigure = Factory(getRandom())
-    console.log(curFigure)
     figureBody = [
         document.querySelector(`[posx = "${x}"][posy = "${y}"]`),
         document.querySelector(`[posx = "${x + curFigure.coordinates[0][0]}"][posy = "${y + curFigure.coordinates[0][1]}"]`),
@@ -27,8 +30,22 @@ function create() {
     console.log(figureBody)
     for (let i = 0; i < figureBody.length; i++) {
         figureBody[i].classList.add('figure')
-        // figureBody[i].classList.add(curFigure.color)
-
+    }
+    nextFigure = Factory(getRandom())
+    console.log(nextFigure)
+    let nextCells = document.getElementsByClassName("nextCell")
+    for (let i = 0; i < nextCells.length; i++) {
+        nextCells[i].classList.remove("figure")
+    }
+    let nextFigureBody = [
+        document.querySelector(`[pos_x = "${1}"][pos_y = "${1}"]`),
+        document.querySelector(`[pos_x = "${1 + nextFigure.coordinates[0][0]}"][pos_y = "${1 + nextFigure.coordinates[0][1]}"]`),
+        document.querySelector(`[pos_x = "${1 + nextFigure.coordinates[1][0]}"][pos_y = "${1 + nextFigure.coordinates[1][1]}"]`),
+        document.querySelector(`[pos_x = "${1 + nextFigure.coordinates[2][0]}"][pos_y = "${1 + nextFigure.coordinates[2][1]}"]`)
+    ]
+    console.log(nextFigureBody)
+    for (let i = 0; i < nextFigureBody.length; i++) {
+        nextFigureBody[i].classList.add('figure')
     }
 }
 
@@ -71,6 +88,15 @@ function moveDown() {
                 if (document.querySelector(`[posx = "${x}"][posy = "${y}"]`).classList.contains("set")) {
                     countSet++
                     if (countSet == width) {
+                        score += 10
+                        if (score != 0 && score % 30 == 0){
+                            moveInterval *= 0.9
+                            clearInterval(interval)
+                            interval = setInterval(() => {
+                                moveDown()
+                            }, moveInterval)
+                        }
+                        document.getElementsByClassName("name")[0].value = getName() + ": " + score
                         for (let m = 1; m <= width; ++m) {
                             document.querySelector(`[posx = "${m}"][posy = "${y}"]`).classList.remove("set")
                         }
