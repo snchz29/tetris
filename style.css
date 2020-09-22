@@ -1,6 +1,13 @@
 * {
     box-sizing: border-box;
-    font-family: "Comic Sans MS", cursive;
+    font-family: 'Press Start 2P', cursive;
+}
+
+#name{
+    height: 40px;
+    background-color: black;
+    color: burlywood;
+    border: 0;
 }
 
 body{
@@ -9,10 +16,9 @@ body{
 
 .main {
     margin-top: 0px;
-    margin-left: auto;
-
+    margin-left: 102px;
+    background-color: #cccccc;
     position: relative;
-    overflow: hidden;
     width: 254px;
     height: 504px;
     border-left: 2px solid black;
@@ -21,52 +27,22 @@ body{
 
 }
 
-.tetris {
-    width: 254px;
-    height: 600px;
-    overflow: hidden;
-    position: absolute;
-    bottom: 0;
-    border-color: grey;
-    flex-wrap: wrap;
-    display: flex;
-}
-
-.cell, .nextCell{
-    box-sizing: border-box;
-    width: 25px;
-    height: 25px;
-    border: 1px dotted black;
-    padding: 0;
-    background-color: #cccccc;
-}
-
-.figure, .set{
-    border: 5px double grey;
-    background-color:black;
-}
-
-.name{
-    display: block;
-    margin: 0px 0px;
-    padding: 0px;
-    font-size: 30px;
+.info{
+    font-size: 20px;
     resize: unset;
-    width: 200px;
-    height: 45px;
+    width: 450px;
+    height: 100px;
     background-color: burlywood;
     border: 0;
 }
 
 .controls{
-    padding: 20px;
-    position: absolute;
-    right: 0;
-    top: 0;
+    padding: 10px;
+    position: relative;
 }
 
 .player{
-    padding: 20px;
+    padding: 30px 10px;
     position: absolute;
     left: 0;
 }
@@ -83,17 +59,24 @@ body{
     transform: translate(-50%, -50%) ;
 }
 
-.next{
-    width: 75px;
-    height: 100px;
+div.next{
+    width: 102px;
+    height: 104px;
     position: absolute;
     bottom: 0;
     top: 0px;
     margin-left: auto;
     right: auto;
-    border-color: grey;
+    border: 2px solid black;
+    border-right: 0;
     flex-wrap: wrap;
     display: flex;
+    background-color: #cccccc;
+}
+
+canvas.next{
+    width: 100px;
+    height: 100px;
 }
 
 .center{
@@ -102,6 +85,6 @@ body{
     margin-right: auto;
     position: relative;
     overflow: hidden;
-    width: 329px;
+    width: 356px;
     height: 504px;
 }

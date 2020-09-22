@@ -1,4 +1,4 @@
-function setCookie(){
+function setName(){
     document.cookie="name="+document.getElementById("name").value
 }
 
@@ -11,3 +11,4 @@ function getName(){
     }
     return ""
 }
+
