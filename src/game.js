@@ -8,7 +8,7 @@ export default class Game {
         3: 100,
         4: 500
     }
-    name = getName()
+    name = Cookie.getName()
     score = 0
     lines = 0
     topOut = false

@@ -6,7 +6,7 @@ const canvas = document.querySelector('.main')
 const game = new Game()
 const view = new View(canvas, 250, 500, 10, 20)
 const controller = new Controller(game, view)
-
+Cookie.setLeaderBoard()
 window.game = game
 window.view = view
 window.controller = controller

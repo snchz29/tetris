@@ -10,9 +10,10 @@
 <body>
 <form action="index.html" class="welcome">
     <h1 align="center">Добро пожаловать в игру Tetris.</h1>
-    <h3 align="center">Введите свое имя: <input id="name"></h3>
-    <button style="font-size: large; margin-left: 75%;" onclick="setName()">Начать!
+    <h4 align="center">Введите свое имя: <input id="name"></h4>
+    <button style="font-size: large; margin-left: 75%; background-color: blueviolet" onclick="Cookie.setName()">Начать!
     </button>
 </form>
+<script>Cookie.addLeader()</script>
 </body>
 </html>
