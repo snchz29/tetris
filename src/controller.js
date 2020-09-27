@@ -6,7 +6,7 @@ export default class Controller {
         this.intervalID = null
         document.addEventListener("keydown", this.handleKeyDown.bind(this))
         document.addEventListener("keyup", this.handleKeyUp.bind(this))
-        this.view.renderMainScreen(this.game.getState())
+        this.view.renderStartScreen()
     }
 
     update() {
@@ -29,8 +29,8 @@ export default class Controller {
     updateView() {
         const state = this.game.getState()
         if (state.isGameOver){
-            alert(`Game over! Your score: ${state.score}.`)
             this.stopTimer()
+            alert(`Game over! Your score: ${state.score}.`)
         }
 
         this.view.renderMainScreen(this.game.getState())

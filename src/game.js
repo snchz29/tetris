@@ -150,6 +150,7 @@ export default class Game {
         }
         if (this.hasCollision()) {
             this.topOut = true
+            Cookie.addLeader(this.name, this.score)
         }
     }
 

@@ -38,9 +38,10 @@ export default class View {
     renderStartScreen(){
         this.context.fillStyle = 'white'
         this.context.font = 'Press Start 2P'
+        this.context.
         this.context.textAlign = 'center'
         this.context.textBaseline = 'middle'
-        // this.context.fillText('Нажмите ENTER', this.width/2, )
+        this.context.fillText('Нажмите ENTER', this.width/2, this.height/2)
     }
 
     renderPanel({name, score, level, lines}) {
@@ -79,13 +80,16 @@ export default class View {
                 if (block) {
                     this.renderBlock(x * this.blockWidth, y * this.blockHeight, this.blockWidth, this.blockHeight, View.colors[block])
                 }
+                else{
+                    this.renderBlock(x * this.blockWidth, y * this.blockHeight, this.blockWidth, this.blockHeight)
+                }
             }
         }
     }
 
-    renderBlock(x, y, width, height, color, context = this.context) {
+    renderBlock(x, y, width, height, color ='#9999dd', context = this.context) {
         context.fillStyle = color
-        context.strokeStyle = 'black'
+        context.strokeStyle = (color === '#9999dd') ? 'grey' : 'black'
         context.lineWidth = 2
         context.fillRect(x, y, width, height)
         context.strokeRect(x, y, width, height)

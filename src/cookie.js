@@ -19,26 +19,32 @@ class Cookie {
 
     static getLeaderboard(){
         let arrLB = this.getCookie(' leaderboard')
-        return JSON.parse(arrLB.substring(13)).sort((a,b)=>{
-            return b.score - a.score
-        })
+        if (arrLB)
+            return JSON.parse(arrLB.substring(13)).sort((a,b)=>{
+                return b.score - a.score
+            })
+        else{
+            return []
+        }
     }
 
-    static addLeader(player="afgdsgdsfg", score = 1230){
+    static addLeader(player, score){
         let arrLB = this.getLeaderboard()
-        for (let i = arrLB.length - 1; i >= 0; --i) {
+        for (let i = arrLB.length-1; i >= 0; --i) {
             if (arrLB[i].score <= score){
-                if (i < arrLB.length - 1){
-                    arrLB[i + 1].name = arrLB[i].name
-                    arrLB[i + 1].score = arrLB[i].score
+                if (i < 4){
+                    arrLB[i + 1] = {name:arrLB[i].name, score:arrLB[i].score}
                 }
-                arrLB[i].name = player
-                arrLB[i].score = score
+                arrLB[i] = {name:player, score:score}
             }
+        }
+        if (arrLB.length === 0){
+            arrLB[0] = {name:player, score:score}
         }
         document.cookie = 'leaderboard=' + JSON.stringify(arrLB)
         console.log(this.getLeaderboard())
     }
+
     static setLeaderBoard(){
         let divLB = document.querySelector('div.leaderboard')
         let ul = document.createElement('ul')

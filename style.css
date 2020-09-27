@@ -18,7 +18,7 @@ body{
 .main {
     margin-top: 0px;
     margin-left: 102px;
-    background-color: #cccccc;
+    background-color: #9999dd;
     position: relative;
     width: 254px;
     height: 504px;
@@ -76,6 +76,7 @@ div.next{
 }
 
 canvas.next{
+    background-color: #9999dd;
     width: 100px;
     height: 100px;
 }
