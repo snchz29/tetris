@@ -4,23 +4,24 @@ class Cookie {
     }
 
     static getCookie(param) {
-        let cookieArr = decodeURIComponent(document.cookie).split(';')
+        param = param.trim()
+        let cookieArr = decodeURIComponent(document.cookie).split('; ')
         for (let i = 0; i < cookieArr.length; i++) {
-            if (cookieArr[i].indexOf(param) !== -1) {
-                return cookieArr[i]
+            if (cookieArr[i].startsWith(param)) {
+                return cookieArr[i].substr(cookieArr[i].indexOf("=")+1)
             }
         }
         return ""
     }
 
     static getName() {
-        let name = this.getCookie('name=')
-        return name.substring(name.indexOf("=")+1)
+        return this.getCookie('name=')
     }
 
     static getLeaderboard(){
         let arrLB = this.getCookie('leaderboard=')
-        if (arrLB[arrLB.length-1] != "=")
+        console.log(arrLB)
+        if (arrLB.length > 0)
             return JSON.parse(arrLB.substring(arrLB.indexOf("=")+1)).sort((a,b)=>{
                 return b.score - a.score
             })
@@ -30,8 +31,10 @@ class Cookie {
     }
 
     static addLeader(player, score){
+        console.log(player, score)
         let arrLB = this.getLeaderboard()
         arrLB.push({name:player, score:score})
+        console.log(arrLB)
         arrLB.sort((a,b)=>{
             return b.score - a.score
         })
@@ -42,6 +45,8 @@ class Cookie {
     static setLeaderBoard(){
         let div = document.querySelector('div.leaderboard')
         const arrLB = this.getLeaderboard()
+        console.log(arrLB)
+
         let ul = document.querySelector('ul#best')
         ul.remove()
         ul = document.createElement('ul')
