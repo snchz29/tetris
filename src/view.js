@@ -35,13 +35,26 @@ export default class View {
         this.renderNextPiece(state)
     }
 
-    renderStartScreen(){
-        this.context.fillStyle = 'white'
-        this.context.font = 'Press Start 2P'
-        this.context.
+    renderStartScreen(state){
+        this.renderPanel(state)
+        this.context.fillStyle = "#9999dd"
+        this.context.fillRect(0,0,this.width, this.height)
+        this.context.fillStyle = 'black'
+        this.context.font = '15px "Press Start 2P"'
+        this.context.lineWidth = 10000
         this.context.textAlign = 'center'
         this.context.textBaseline = 'middle'
         this.context.fillText('Нажмите ENTER', this.width/2, this.height/2)
+    }
+
+    renderEndScreen(state){
+        this.context.fillStyle = 'black'
+        this.context.font = '15px "Press Start 2P"'
+        this.context.lineWidth = 10000
+        this.context.textAlign = 'center'
+        this.context.textBaseline = 'middle'
+        this.context.fillText(`Игра окончена!`, this.width/2, this.height/2)
+        this.context.fillText(`Ваш счет: ${state.score}`, this.width/2, this.height/2 + 16)
     }
 
     renderPanel({name, score, level, lines}) {

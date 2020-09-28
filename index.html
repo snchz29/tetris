@@ -1,31 +1,18 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>Tetris</title>
-    <link rel="stylesheet" href="style.css">
+    <script src="./src/cookie.js"></script>
     <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
-    <script src="src/cookie.js"></script>
-
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-<div class="player">
-    <div><textarea class="info" readonly></textarea></div>
-    <div class="controls">
-        <h3>Управление</h3>
-        <ul>
-            <li>Вправо - стрелка вправо</li>
-            <li>Влево - стрелка влево</li>
-            <li>Поворот - стрелка вверх</li>
-            <li>Ускорение - стрелка вниз</li>
-        </ul>
-    </div>
-</div>
-<div class="center">
-    <div class="next"><canvas class="next"></canvas></div>
-    <div class="main"></div>
-</div>
-<div class="leaderboard"></div>
-<script src="script.js" type="module"></script>
+<form action="tetris.html" class="welcome">
+    <h1 align="center">Добро пожаловать в игру Tetris.</h1>
+    <h4 align="center">Введите свое имя: <input id="name"></h4>
+    <button style="font-size: large; margin-left: 75%; background-color: blueviolet" onclick="Cookie.setName()">Начать!
+    </button>
+</form>
 </body>
 </html>

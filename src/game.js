@@ -1,4 +1,7 @@
 export default class Game {
+    constructor() {
+        Cookie.setLeaderBoard()
+    }
     static columns = 10
     static rows = 20
     static points = {

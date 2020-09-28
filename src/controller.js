@@ -1,14 +1,20 @@
+import Game from "./game.js"
+import View from "./view.js"
 export default class Controller {
-    constructor(game, view) {
-        this.game = game
-        this.view = view
-        this.isPlaying = false
-        this.intervalID = null
+    constructor() {
+        const canvas = document.querySelector('.main')
+        this.view = new View(canvas, 250, 500, 10, 20)
         document.addEventListener("keydown", this.handleKeyDown.bind(this))
         document.addEventListener("keyup", this.handleKeyUp.bind(this))
-        this.view.renderStartScreen()
+        this.startGame()
     }
-
+    startGame(){
+        this.game = new Game()
+        this.isPlaying = false
+        this.isOver = false
+        this.intervalID = null
+        this.view.renderStartScreen(this.game.getState())
+    }
     update() {
         this.game.movePieceDown()
         this.updateView()
@@ -23,17 +29,21 @@ export default class Controller {
     pause() {
         this.isPlaying = false
         this.stopTimer()
-        this.updateView()
+        this.view.renderStartScreen(this.game.getState())
     }
 
     updateView() {
         const state = this.game.getState()
-        if (state.isGameOver){
+        if (state.isGameOver) {
+            this.view.renderEndScreen(this.game.getState())
+            this.isOver = true
             this.stopTimer()
-            alert(`Game over! Your score: ${state.score}.`)
+            Cookie.setLeaderBoard()
+        }else if (!this.isPlaying){
+            this.view.renderStartScreen(this.game.getState())
+        } else {
+            this.view.renderMainScreen(this.game.getState())
         }
-
-        this.view.renderMainScreen(this.game.getState())
     }
 
     startTimer() {
@@ -53,37 +63,51 @@ export default class Controller {
     }
 
     handleKeyDown(event) {
-        switch (event.keyCode) {
-            case 13:
-                if (this.isPlaying) {
-                    this.pause()
-                } else {
-                    this.play()
-                }
-                break
-            case 37:
-                if (this.isPlaying) {
-                    this.game.movePieceLeft()
-                }
-                break
-            case 38:
-                if (this.isPlaying) {
-                    this.game.rotatePiece()
-                }
-                break
-            case 39:
-                if (this.isPlaying) {
-                    this.game.movePieceRight()
-                }
-                break
-            case 40:
-                if (this.isPlaying) {
-                    this.stopTimer()
-                    this.game.movePieceDown()
-                }
-                break
+        if (this.isOver) {
+            switch (event.keyCode) {
+                case 13:
+                    this.startGame()
+                    break
+            }
         }
-        this.updateView()
+        else {
+            switch (event.keyCode) {
+                case 13:
+                    if (this.isPlaying) {
+                        this.pause()
+                        this.view.renderStartScreen(this.game.getState())
+                    } else {
+                        this.play()
+                        this.updateView()
+                    }
+                    break
+                case 37:
+                    if (this.isPlaying) {
+                        this.game.movePieceLeft()
+                        this.updateView()
+                    }
+                    break
+                case 38:
+                    if (this.isPlaying) {
+                        this.game.rotatePiece()
+                        this.updateView()
+                    }
+                    break
+                case 39:
+                    if (this.isPlaying) {
+                        this.game.movePieceRight()
+                        this.updateView()
+                    }
+                    break
+                case 40:
+                    if (this.isPlaying) {
+                        this.stopTimer()
+                        this.game.movePieceDown()
+                        this.updateView()
+                    }
+                    break
+            }
+        }
     }
 
     handleKeyUp(event){
