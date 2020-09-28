@@ -4,9 +4,9 @@ export default class Controller {
     constructor() {
         const canvas = document.querySelector('.main')
         this.view = new View(canvas, 250, 500, 10, 20)
+        this.startGame()
         document.addEventListener("keydown", this.handleKeyDown.bind(this))
         document.addEventListener("keyup", this.handleKeyUp.bind(this))
-        this.startGame()
     }
     startGame(){
         this.game = new Game()

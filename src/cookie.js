@@ -14,12 +14,12 @@ class Cookie {
     }
 
     static getName() {
-        let name = this.getCookie('name')
+        let name = this.getCookie('name=')
         return name.substring(name.indexOf("=")+1)
     }
 
     static getLeaderboard(){
-        let arrLB = this.getCookie('leaderboard')
+        let arrLB = this.getCookie('leaderboard=')
         if (arrLB[arrLB.length-1] != "=")
             return JSON.parse(arrLB.substring(arrLB.indexOf("=")+1)).sort((a,b)=>{
                 return b.score - a.score
