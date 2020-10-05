@@ -48,6 +48,7 @@ export default class View {
     }
 
     renderEndScreen(state){
+        this.clearScreen()
         this.context.fillStyle = 'black'
         this.context.font = '15px "Press Start 2P"'
         this.context.lineWidth = 10000
@@ -93,9 +94,9 @@ export default class View {
                 if (block) {
                     this.renderBlock(x * this.blockWidth, y * this.blockHeight, this.blockWidth, this.blockHeight, View.colors[block])
                 }
-                else{
-                    this.renderBlock(x * this.blockWidth, y * this.blockHeight, this.blockWidth, this.blockHeight)
-                }
+                // else{
+                //     this.renderBlock(x * this.blockWidth, y * this.blockHeight, this.blockWidth, this.blockHeight)
+                // }
             }
         }
     }
